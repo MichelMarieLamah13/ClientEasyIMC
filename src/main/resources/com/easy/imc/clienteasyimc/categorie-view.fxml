@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="632.0" prefWidth="766.0" styleClass="primary-color" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.easy.imc.clienteasyimc.controllers.CategorieController">
+   <children>
+      <Pane prefHeight="62.0" prefWidth="766.0" styleClass="c1">
+         <children>
+            <Label layoutX="68.0" layoutY="17.0" styleClass="title" text="Catégorie" textFill="#fffdfd">
+               <font>
+                  <Font name="Corbel Bold" size="24.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="56.0" fitWidth="58.0" layoutX="4.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icons/category.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Label fx:id="title_lbl" layoutX="24.0" layoutY="112.0" prefHeight="22.0" prefWidth="501.0" text="Title" textFill="#54d39d">
+         <font>
+            <Font name="Corbel Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="subtitle_lbl" layoutX="64.0" layoutY="143.0" prefHeight="22.0" prefWidth="443.0" text="Subtitle" textFill="#54d39d">
+         <font>
+            <Font name="Corbel Bold" size="14.0" />
+         </font>
+      </Label>
+      <Pane layoutX="603.0" layoutY="75.0" prefHeight="133.0" prefWidth="134.0">
+         <children>
+            <ImageView fx:id="avatar_iv" fitHeight="116.0" fitWidth="164.0" layoutX="9.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/categories/categorie06.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Label fx:id="subtitle_lbl1" layoutX="64.0" layoutY="203.0" prefHeight="22.0" prefWidth="443.0" text="Description" textFill="#54d39d">
+         <font>
+            <Font name="Corbel Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="subtitle_lbl11" layoutX="64.0" layoutY="342.0" prefHeight="22.0" prefWidth="443.0" text="Conseils" textFill="#54d39d">
+         <font>
+            <Font name="Corbel Bold" size="14.0" />
+         </font>
+      </Label>
+      <Hyperlink fx:id="calculer_imc_hplk" layoutX="20.0" layoutY="78.0" onAction="#onGoToCalculIMCClicked" styleClass="hyperlink-cacher-mdp" text="Calculer encore votre IMC!" />
+      <Label layoutX="64.0" layoutY="174.0" prefHeight="22.0" prefWidth="69.0" text="Minimum" textFill="#54d39d">
+         <font>
+            <Font name="Corbel Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="322.0" layoutY="174.0" prefHeight="22.0" prefWidth="69.0" text="Maximum" textFill="#54d39d">
+         <font>
+            <Font name="Corbel Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="minimum_txtfd" editable="false" layoutX="133.0" layoutY="171.0" prefHeight="28.0" prefWidth="134.0" styleClass="custom-text-input" />
+      <TextField fx:id="maximum_txtfd" editable="false" layoutX="391.0" layoutY="171.0" prefHeight="28.0" prefWidth="134.0" styleClass="custom-text-input" />
+      <TextArea fx:id="conseils_txtarea" editable="false" layoutX="62.0" layoutY="374.0" prefHeight="242.0" prefWidth="680.0" styleClass="text-area" wrapText="true">
+         <font>
+            <Font name="Corbel" size="14.0" />
+         </font>
+      </TextArea>
+      <TextArea fx:id="description_txtarea" editable="false" layoutX="62.0" layoutY="225.0" prefHeight="111.0" prefWidth="680.0" styleClass="text-area" wrapText="true">
+         <font>
+            <Font name="Corbel" size="14.0" />
+         </font>
+      </TextArea>
+   </children>
+</AnchorPane>

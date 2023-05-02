@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="632.0" prefWidth="766.0" styleClass="primary-color" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.easy.imc.clienteasyimc.controllers.CalculIMCController">
+   <children>
+      <Pane fx:id="top_pane" prefHeight="62.0" prefWidth="766.0" styleClass="c1">
+         <children>
+            <Label layoutX="68.0" layoutY="17.0" styleClass="title" text="Calcul IMC" textFill="#fffdfd">
+               <font>
+                  <Font name="Corbel Bold" size="24.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="56.0" fitWidth="58.0" layoutX="4.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icons/imc.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="recemment_calcule_pane" layoutX="12.0" layoutY="79.0">
+         <children>
+            <Label layoutX="2.0" prefHeight="22.0" prefWidth="180.0" text="Recemment calculé" textFill="#54d39d">
+               <font>
+                  <Font name="Corbel Bold" size="18.0" />
+               </font>
+            </Label>
+            <VBox layoutY="33.0">
+               <children>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="740.0" styleClass="header-table">
+                     <children>
+                        <Label prefHeight="26.0" prefWidth="102.0" text="Poids" textFill="#54d39d">
+                           <font>
+                              <Font name="Corbel Bold" size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="10.0" prefHeight="22.0" prefWidth="125.0" styleClass="table-column" text="Taille" textFill="#54d39d">
+                           <font>
+                              <Font name="Corbel Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="139.0" layoutY="10.0" prefHeight="22.0" prefWidth="126.0" styleClass="table-column" text="IMC" textFill="#54d39d">
+                           <font>
+                              <Font name="Corbel Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="268.0" layoutY="10.0" prefHeight="22.0" prefWidth="130.0" styleClass="table-column" text="Date" textFill="#54d39d">
+                           <font>
+                              <Font name="Corbel Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="397.0" layoutY="10.0" prefHeight="22.0" prefWidth="128.0" styleClass="table-column" text="Heure" textFill="#54d39d">
+                           <font>
+                              <Font name="Corbel Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="503.0" layoutY="10.0" prefHeight="22.0" prefWidth="124.0" styleClass="table-column" text="Catégorie" textFill="#54d39d">
+                           <font>
+                              <Font name="Corbel Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <ScrollPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="214.0" prefWidth="740.0" styleClass="secondary-color">
+                     <content>
+                        <VBox fx:id="recentlyAdded_vbox" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="215.0" prefWidth="725.0" styleClass="primary-color">
+                           <children>
+                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="73.0" prefWidth="738.0">
+                                 <children>
+                                    <Label alignment="CENTER_RIGHT" prefHeight="70.0" prefWidth="102.0" styleClass="table-row-column-first" text="Poids" textAlignment="RIGHT" textFill="WHITE">
+                                       <font>
+                                          <Font name="Corbel Bold" size="14.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="5.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="70.0" prefWidth="125.0" styleClass="table-row-column" text="Taille" textFill="WHITE">
+                                       <font>
+                                          <Font name="Corbel Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER_RIGHT" layoutX="139.0" layoutY="10.0" prefHeight="70.0" prefWidth="126.0" styleClass="table-row-column" text="IMC" textFill="WHITE">
+                                       <font>
+                                          <Font name="Corbel Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER_RIGHT" layoutX="268.0" layoutY="10.0" prefHeight="70.0" prefWidth="130.0" styleClass="table-row-column" text="Date" textFill="WHITE">
+                                       <font>
+                                          <Font name="Corbel Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER_RIGHT" layoutX="397.0" layoutY="10.0" prefHeight="70.0" prefWidth="128.0" styleClass="table-row-column" text="Heure" textFill="WHITE">
+                                       <font>
+                                          <Font name="Corbel Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="124.0">
+                                       <graphic>
+                                          <ImageView fitHeight="68.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@images/categories/categorie02.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <styleClass>
+                                          <String fx:value="table-btn-details" />
+                                          <String fx:value="table-row-column" />
+                                       </styleClass>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+      <Pane layoutX="14.0" layoutY="363.0">
+         <children>
+            <Label prefHeight="22.0" prefWidth="180.0" text="Calculer votre IMC" textFill="#54d39d">
+               <font>
+                  <Font name="Corbel Bold" size="18.0" />
+               </font>
+            </Label>
+            <VBox alignment="CENTER" layoutX="18.0" layoutY="41.0" spacing="5.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="531.0">
+                     <children>
+                        <ImageView fitHeight="51.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/icons/result_imc.png" />
+                           </image>
+                        </ImageView>
+                        <Label prefHeight="14.0" prefWidth="73.0" text="IMC" textFill="#54d39d">
+                           <font>
+                              <Font name="Corbel Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="imc_txtfd" alignment="CENTER_RIGHT" editable="false" prefHeight="37.0" prefWidth="255.0" styleClass="custom-text-input" />
+                        <Pane prefHeight="51.0" prefWidth="52.0" />
+                        <TextField fx:id="unite_imc_txtfd" alignment="TOP_RIGHT" editable="false" prefHeight="37.0" prefWidth="75.0" styleClass="custom-text-input" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="531.0">
+                     <children>
+                        <ImageView fitHeight="51.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/icons/weight.png" />
+                           </image>
+                        </ImageView>
+                        <Label prefHeight="14.0" prefWidth="73.0" text="Poids" textFill="#54d39d">
+                           <font>
+                              <Font name="Corbel Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="poids_txtfd" alignment="CENTER_RIGHT" prefHeight="37.0" prefWidth="255.0" styleClass="custom-text-input" />
+                        <Pane prefHeight="51.0" prefWidth="51.0" />
+                        <ChoiceBox fx:id="unite_poids_cb" prefHeight="38.0" prefWidth="75.0" styleClass="custom-text-input" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="531.0">
+                     <children>
+                        <ImageView fitHeight="51.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/icons/height.png" />
+                           </image>
+                        </ImageView>
+                        <Label prefHeight="14.0" prefWidth="73.0" text="Taille" textFill="#54d39d">
+                           <font>
+                              <Font name="Corbel Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="taille_txtfd" alignment="CENTER_RIGHT" prefHeight="37.0" prefWidth="255.0" styleClass="custom-text-input" />
+                        <Pane prefHeight="51.0" prefWidth="51.0" />
+                        <ChoiceBox fx:id="unite_taille_cb" prefHeight="38.0" prefWidth="75.0" styleClass="custom-text-input" />
+                     </children>
+                  </HBox>
+                  <Button mnemonicParsing="false" onAction="#onClickCalculerIMC" prefHeight="46.0" prefWidth="138.0" styleClass="calculer-btn" text="Calculer" textFill="WHITE">
+                     <font>
+                        <Font name="Corbel" size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/icons/calculer.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" layoutX="549.0" layoutY="48.0" prefHeight="203.0" prefWidth="199.0" spacing="2.0">
+               <children>
+                  <ImageView fx:id="categorie_iv" fitHeight="140.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/categories/categorie01.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="categorie_title_txtfd" alignment="CENTER" contentDisplay="CENTER" prefHeight="22.0" prefWidth="145.0" text="Catégorie" textAlignment="CENTER" textFill="#54d39d">
+                     <font>
+                        <Font name="Corbel Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Button mnemonicParsing="false" onAction="#onDetailsBtnClicked" prefHeight="31.0" prefWidth="169.0" styleClass="plus-details-btn" text="Plus de détails">
+                     <graphic>
+                        <ImageView fitHeight="29.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/icons/details.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

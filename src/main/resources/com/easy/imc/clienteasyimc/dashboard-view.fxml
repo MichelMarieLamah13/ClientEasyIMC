@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="632.0" prefWidth="766.0" styleClass="primary-color" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.easy.imc.clienteasyimc.controllers.DashboardController">
+   <children>
+      <Pane prefHeight="62.0" prefWidth="766.0" styleClass="c1">
+         <children>
+            <Label layoutX="68.0" layoutY="17.0" styleClass="title" text="Dashboard" textFill="#fffdfd">
+               <font>
+                  <Font name="Corbel Bold" size="24.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="56.0" fitWidth="58.0" layoutX="4.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icons/dashboard.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Label layoutX="23.0" layoutY="79.0" prefHeight="22.0" prefWidth="180.0" text="IMC par catégorie" textFill="#54d39d">
+         <font>
+            <Font name="Corbel Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="23.0" layoutY="343.0" prefHeight="22.0" prefWidth="180.0" text="Historique IMC" textFill="#54d39d">
+         <font>
+            <Font name="Corbel Bold" size="18.0" />
+         </font>
+      </Label>
+      <LineChart fx:id="imc_lc" layoutX="133.0" layoutY="372.0" prefHeight="260.0" prefWidth="500.0" title="Historique IMC">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" tickLabelFill="WHITE" fx:id="x" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="y" side="LEFT" tickLabelFill="WHITE" />
+        </yAxis>
+      </LineChart>
+      <ScrollPane layoutX="23.0" layoutY="106.0" maxWidth="-Infinity" prefHeight="199.0" prefWidth="732.0" styleClass="secondary-color" stylesheets="@css/styles.css">
+        <content>
+          <AnchorPane prefHeight="204.0" prefWidth="717.0" styleClass="primary-color">
+               <children>
+                  <GridPane fx:id="card_gp" layoutX="24.0" layoutY="13.0" prefHeight="178.0" prefWidth="250.0">
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <columnConstraints>
+                        <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <children>
+                        <AnchorPane prefHeight="168.0" prefWidth="226.0">
+                           <children>
+                              <ImageView fitHeight="125.0" fitWidth="106.0" layoutX="-1.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/categories/categorie01.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="nombre" layoutX="127.0" layoutY="44.0" prefHeight="22.0" prefWidth="113.0" text="29" textFill="WHITE">
+                                 <font>
+                                    <Font name="Corbel Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="title" layoutX="13.0" layoutY="108.0" prefHeight="22.0" prefWidth="156.0" text="Title" textFill="WHITE">
+                                 <font>
+                                    <Font name="Corbel Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="subtitle" layoutX="39.0" layoutY="132.0" prefHeight="22.0" prefWidth="158.0" text="Subtitle" textFill="WHITE">
+                                 <font>
+                                    <Font name="Corbel Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <styleClass>
+                              <String fx:value="card-categorie" />
+                              <String fx:value="categorie01" />
+                           </styleClass>
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </AnchorPane>
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

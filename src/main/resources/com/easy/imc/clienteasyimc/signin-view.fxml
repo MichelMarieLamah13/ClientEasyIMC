@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onEnterKeyPressed" prefHeight="632.0" prefWidth="766.0" styleClass="primary-color" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.easy.imc.clienteasyimc.controllers.SignInController">
+   <children>
+      <VBox alignment="CENTER" layoutX="131.0" layoutY="68.0" spacing="20.0">
+         <children>
+            <Label prefHeight="42.0" prefWidth="215.0" text="Se Connecter" textFill="#54d39d">
+               <font>
+                  <Font name="Corbel Bold" size="36.0" />
+               </font>
+            </Label>
+            <VBox alignment="CENTER">
+               <children>
+                  <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="149.0">
+                     <children>
+                        <ImageView fitHeight="139.0" fitWidth="190.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/icons/se_connecter.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="284.0" prefWidth="505.0" styleClass="login-container">
+                     <children>
+                        <Pane layoutX="25.0" layoutY="28.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="469.0">
+                                 <children>
+                                    <ImageView fitHeight="51.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/icons/username.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label prefHeight="22.0" prefWidth="104.0" text="Login" textFill="#54d39d">
+                                       <font>
+                                          <Font name="Corbel Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="login_txtfd" prefHeight="37.0" prefWidth="302.0" styleClass="custom-text-input" />
+                                 </children>
+                              </HBox>
+                              <Pane layoutX="284.0" layoutY="117.0">
+                                 <children>
+                                    <CheckBox fx:id="afficher_mdp_cb" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="155.0" layoutY="2.0" mnemonicParsing="false" onAction="#onShowPasswordClicked" />
+                                    <Hyperlink fx:id="afficher_mdp_hplk" layoutY="1.0" onAction="#onShowPasswordClicked" styleClass="hyperlink-afficher-mdp" text="Afficher le mot de passe" />
+                                    <Hyperlink fx:id="cacher_mdp_hplk" layoutX="1.0" onAction="#onShowPasswordClicked" styleClass="hyperlink-cacher-mdp" text="Cacher le mot de passe" visible="false">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </Hyperlink>
+                                 </children>
+                              </Pane>
+                              <Button fx:id="me_connecter_btn" layoutX="146.0" layoutY="157.0" mnemonicParsing="false" onAction="#onLoggedInClicked" prefHeight="39.0" prefWidth="190.0" styleClass="plus-details-btn" text="Me connecter">
+                                 <graphic>
+                                    <ImageView fitHeight="29.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/icons/login.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Pane layoutY="53.0">
+                                 <children>
+                                    <ImageView fitHeight="51.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/icons/password.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label layoutX="51.0" layoutY="14.0" prefHeight="22.0" prefWidth="104.0" text="Password" textFill="#54d39d">
+                                       <font>
+                                          <Font name="Corbel Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="mdp_txtfd" layoutX="155.0" layoutY="7.0" onKeyReleased="#onKeyReleasedInHiddenPwd" prefHeight="37.0" prefWidth="302.0" styleClass="custom-text-input" visible="false" />
+                                    <PasswordField fx:id="mdp_pwdfld" layoutX="154.0" layoutY="7.0" onKeyReleased="#onKeyReleasedInPwd" prefHeight="37.0" prefWidth="302.0" styleClass="custom-text-input" />
+                                 </children>
+                              </Pane>
+                              <Hyperlink fx:id="creer_compte_hplk" alignment="CENTER_RIGHT" layoutX="119.0" layoutY="211.0" onAction="#onCreateAccountClicked" prefHeight="21.0" prefWidth="327.0" styleClass="hyperlink-cacher-mdp" text="Je n'ai pas de compte, j'en crée un?" />
+                           </children>
+                        </Pane>
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

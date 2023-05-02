@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="687.0" prefWidth="998.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.easy.imc.clienteasyimc.controllers.MainController">
+   <top>
+      <HBox fx:id="top_anchor" prefHeight="55.0" prefWidth="1008.0" styleClass="secondary-color" stylesheets="@css/styles.css" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" spacing="10.0">
+               <children>
+                  <ImageView fitHeight="55.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/icons/logo.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="EasyIMC" textFill="WHITE">
+                     <font>
+                        <Font name="Cooper Black" size="36.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <Pane prefHeight="55.0" prefWidth="669.0" />
+            <HBox>
+               <children>
+                  <Button fx:id="close_btn" mnemonicParsing="false" onAction="#close" styleClass="close">
+                     <graphic>
+                        <ImageView fitHeight="45.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/icons/close.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="minimize_btn" mnemonicParsing="false" onAction="#minimize" styleClass="close">
+                     <graphic>
+                        <ImageView fitHeight="45.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/icons/minus.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets left="5.0" right="5.0" />
+         </padding>
+      </HBox>
+   </top>
+   <left>
+      <AnchorPane styleClass="secondary-color" stylesheets="@css/styles.css" BorderPane.alignment="CENTER">
+         <children>
+            <VBox fx:id="user_info_vbox" alignment="CENTER" prefHeight="245.0" prefWidth="231.0" spacing="10.0">
+               <children>
+                  <ImageView fx:id="image_iv" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/users/user08.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="username_txtfd" text="Username" textFill="WHITE">
+                     <font>
+                        <Font name="Corbel Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="edit_profile_btn" mnemonicParsing="false" onAction="#onEditProfileClicked" styleClass="button-1" text="Edit Profile" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/icons/edit.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox layoutY="250.0" prefHeight="275.0" prefWidth="232.0" spacing="5.0">
+               <children>
+                  <Button fx:id="profile_btn" alignment="BOTTOM_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onMenuItemClicked" prefHeight="40.0" prefWidth="231.0" styleClass="custom-menu-item" text="Profile" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/icons/user.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Corbel Bold" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="dashboard_btn" alignment="BOTTOM_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onMenuItemClicked" prefHeight="40.0" prefWidth="231.0" styleClass="custom-menu-item" text="Dashboard" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/icons/dashboard.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Corbel Bold" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="calcul_imc_btn" alignment="BOTTOM_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="61.0" mnemonicParsing="false" onAction="#onMenuItemClicked" prefHeight="40.0" prefWidth="231.0" styleClass="custom-menu-item" text="Calcul IMC" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/icons/imc.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Corbel Bold" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="historique_btn" alignment="BOTTOM_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="163.0" mnemonicParsing="false" onAction="#onMenuItemClicked" prefHeight="40.0" prefWidth="231.0" styleClass="custom-menu-item" text="Historique" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/icons/history.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Corbel Bold" size="24.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <Pane fx:id="login_pane" layoutY="586.0">
+               <children>
+                  <Button fx:id="login_btn" mnemonicParsing="false" onAction="#onLoginBtnClicked" styleClass="login">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/icons/login.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Hyperlink fx:id="login_hyperlink" layoutX="48.0" onAction="#onLoginBtnClicked" prefHeight="40.0" prefWidth="183.0" text="Connexion">
+                     <styleClass>
+                        <String fx:value="hyperlink" />
+                        <String fx:value="hyperlink-login" />
+                     </styleClass>
+                  </Hyperlink>
+               </children>
+            </Pane>
+            <Pane fx:id="logout_pane" layoutX="1.0" layoutY="586.0" visible="false">
+               <children>
+                  <Button fx:id="logout_btn" mnemonicParsing="false" onAction="#onLogoutBtnClicked" styleClass="login">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/icons/logout.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Hyperlink fx:id="logout_hyperlink" layoutX="48.0" onAction="#onLogoutBtnClicked" prefHeight="40.0" prefWidth="183.0" text="Deconnexion">
+                     <styleClass>
+                        <String fx:value="hyperlink" />
+                        <String fx:value="hyperlink-logout" />
+                     </styleClass>
+                  </Hyperlink>
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane fx:id="center_anchorPane" prefHeight="200.0" prefWidth="200.0" styleClass="primary-color" stylesheets="@css/styles.css" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onDetailsBtnClicked" prefHeight="168.0" prefWidth="226.0" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.easy.imc.clienteasyimc.controllers.CategorieCardController">
+   <children>
+      <ImageView fx:id="avatar_iv" fitHeight="125.0" fitWidth="106.0" layoutX="-1.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/categories/categorie01.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="nombre_lbl" layoutX="116.0" layoutY="44.0" prefHeight="22.0" prefWidth="106.0" text="29" textFill="WHITE">
+         <font>
+            <Font name="Corbel Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="title_lbl" layoutX="13.0" layoutY="108.0" prefHeight="22.0" prefWidth="205.0" text="Title" textFill="WHITE">
+         <font>
+            <Font name="Corbel Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="subtitle_lbl" layoutX="39.0" layoutY="132.0" prefHeight="22.0" prefWidth="158.0" text="Subtitle" textFill="WHITE">
+         <font>
+            <Font name="Corbel Bold" size="14.0" />
+         </font>
+      </Label>
+   </children>
+   <styleClass>
+      <String fx:value="card-categorie" />
+      <String fx:value="categorie01" />
+   </styleClass>
+</AnchorPane>

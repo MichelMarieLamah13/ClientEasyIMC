@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onEnterKeyPressed" prefHeight="632.0" prefWidth="766.0" styleClass="primary-color" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.easy.imc.clienteasyimc.controllers.ProfileController">
+   <children>
+      <Pane prefHeight="62.0" prefWidth="766.0" styleClass="c1">
+         <children>
+            <Label layoutX="68.0" layoutY="17.0" styleClass="title" text="Profile" textFill="#fffdfd">
+               <font>
+                  <Font name="Corbel Bold" size="24.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="56.0" fitWidth="58.0" layoutX="4.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icons/user.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Label layoutX="33.0" layoutY="89.0" prefHeight="22.0" prefWidth="180.0" text="Informations" textFill="#54d39d">
+         <font>
+            <Font name="Corbel Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="33.0" layoutY="349.0" prefHeight="22.0" prefWidth="180.0" text="Dernier IMC" textFill="#54d39d">
+         <font>
+            <Font name="Corbel Bold" size="18.0" />
+         </font>
+      </Label>
+      <VBox alignment="CENTER" layoutX="42.0" layoutY="414.0" spacing="5.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="531.0">
+               <children>
+                  <ImageView fitHeight="51.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/icons/result_imc.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="14.0" prefWidth="73.0" text="IMC" textFill="#54d39d">
+                     <font>
+                        <Font name="Corbel Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="imc_txtfd" editable="false" prefHeight="37.0" prefWidth="255.0" styleClass="custom-text-input" />
+                  <Pane prefHeight="51.0" prefWidth="52.0" />
+                  <TextField fx:id="unite_imc_txtfd" editable="false" prefHeight="37.0" prefWidth="75.0" styleClass="custom-text-input" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="531.0">
+               <children>
+                  <ImageView fitHeight="51.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/icons/weight.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="14.0" prefWidth="73.0" text="Poids" textFill="#54d39d">
+                     <font>
+                        <Font name="Corbel Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="poids_txtfd" editable="false" prefHeight="37.0" prefWidth="255.0" styleClass="custom-text-input" />
+                  <Pane prefHeight="51.0" prefWidth="52.0" />
+                  <TextField fx:id="unite_poids_txtf" editable="false" prefHeight="37.0" prefWidth="75.0" styleClass="custom-text-input" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="531.0">
+               <children>
+                  <ImageView fitHeight="51.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/icons/height.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="14.0" prefWidth="73.0" text="Taille" textFill="#54d39d">
+                     <font>
+                        <Font name="Corbel Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="taille_txtfd" editable="false" prefHeight="37.0" prefWidth="255.0" styleClass="custom-text-input" />
+                  <Pane prefHeight="51.0" prefWidth="52.0" />
+                  <TextField fx:id="unite_taille_txtfd" editable="false" prefHeight="37.0" prefWidth="75.0" styleClass="custom-text-input" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="573.0" layoutY="421.0" prefHeight="203.0" prefWidth="199.0" spacing="2.0">
+         <children>
+            <ImageView fx:id="avatar_iv" fitHeight="140.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/categories/categorie01.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="categorie_txtfd" alignment="CENTER" contentDisplay="CENTER" prefHeight="22.0" prefWidth="145.0" text="Catégorie" textAlignment="CENTER" textFill="#54d39d">
+               <font>
+                  <Font name="Corbel Bold" size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="details_btn" mnemonicParsing="false" onAction="#onDetailsBtnClicked" prefHeight="31.0" prefWidth="169.0" styleClass="plus-details-btn" text="Plus de détails">
+               <graphic>
+                  <ImageView fitHeight="29.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/icons/details.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </VBox>
+      <Pane layoutX="166.0" layoutY="121.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="469.0">
+               <children>
+                  <ImageView fitHeight="51.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/icons/username.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="22.0" prefWidth="104.0" text="Login" textFill="#54d39d">
+                     <font>
+                        <Font name="Corbel Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="login_txtfd" prefHeight="37.0" prefWidth="302.0" styleClass="custom-text-input" />
+               </children>
+            </HBox>
+            <Pane layoutX="284.0" layoutY="122.0">
+               <children>
+                  <CheckBox fx:id="afficher_mdp_cb" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="155.0" layoutY="1.0" mnemonicParsing="false" onAction="#onShowPasswordClicked" />
+                  <Hyperlink fx:id="afficher_mdp_hplk" onAction="#onShowPasswordClicked" styleClass="hyperlink-afficher-mdp" text="Afficher le mot de passe" />
+                  <Hyperlink fx:id="cacher_mdp_hplk" onAction="#onShowPasswordClicked" styleClass="hyperlink-afficher-mdp" text="Cacher le mot de passe" visible="false" />
+               </children>
+            </Pane>
+            <Button fx:id="modifier_btn" layoutX="146.0" layoutY="156.0" mnemonicParsing="false" onAction="#onEditBtnClicked" prefHeight="39.0" prefWidth="156.0" styleClass="plus-details-btn" text="Modifier">
+               <graphic>
+                  <ImageView fitHeight="29.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/icons/details.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Pane layoutY="58.0">
+               <children>
+                  <ImageView fitHeight="51.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/icons/password.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="51.0" layoutY="14.0" prefHeight="22.0" prefWidth="104.0" text="Password" textFill="#54d39d">
+                     <font>
+                        <Font name="Corbel Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="mdp_txtfd" layoutX="155.0" layoutY="7.0" onKeyReleased="#onKeyReleasedInHiddenPwd" prefHeight="37.0" prefWidth="302.0" styleClass="custom-text-input" visible="false" />
+                  <PasswordField fx:id="mdp_pwdfld" layoutX="154.0" layoutY="13.0" onKeyReleased="#onKeyReleasedInPwd" prefHeight="37.0" prefWidth="302.0" styleClass="custom-text-input" />
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
