@@ -17,6 +17,16 @@ public class History {
 
     public int idCategory;
 
+    public boolean save;
+
+    public boolean isSave() {
+        return save;
+    }
+
+    public void setSave(boolean save) {
+        this.save = save;
+    }
+
     public History() {
         this.id = 0;
         this.idUser = 0;

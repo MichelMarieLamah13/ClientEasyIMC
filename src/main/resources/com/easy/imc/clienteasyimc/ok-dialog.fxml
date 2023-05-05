@@ -43,7 +43,7 @@
       </HBox>
       <AnchorPane layoutX="109.0" layoutY="63.0" prefHeight="32.0" prefWidth="307.0" styleClass="dialog-bg-white">
          <children>
-            <Label fx:id="message_lbl" prefHeight="32.0" prefWidth="282.0" text="Voulez-vous vraiment fermer l'application?" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Label fx:id="message_lbl" prefHeight="32.0" prefWidth="282.0" text="Voulez-vous vraiment fermer l'application?" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font size="14.0" />
                </font>

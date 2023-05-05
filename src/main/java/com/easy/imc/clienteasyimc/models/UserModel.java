@@ -8,6 +8,9 @@ public class UserModel {
     public String password;
     public String avatar;
     public int role;
+    public int age;
+
+    public AgeCategorieModel ageCategorie;
 
     public UserModel() {
     }
@@ -53,7 +56,10 @@ public class UserModel {
     }
 
     public User toEntity(){
-        return new User(id, login, password, avatar, role);
+        if(ageCategorie!=null){
+            return new User(id, login, password, avatar, role, age, ageCategorie.id);
+        }
+        return new User(id, login, password, avatar, role, age);
     }
 
     @Override
@@ -64,6 +70,8 @@ public class UserModel {
                 ", \"password\":\"" + password + '"' +
                 ", \"avatar\":" + avatar + '"' +
                 ", \"role\":" + role +
+                ", \"age\":" + age +
+                ", \"ageCategorie\":" + ageCategorie +
                 '}';
     }
 }

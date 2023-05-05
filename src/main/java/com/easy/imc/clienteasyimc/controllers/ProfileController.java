@@ -86,15 +86,15 @@ public class ProfileController implements Initializable {
 
     }
 
-    public User connectedUser;
+    public UserModel connectedUser;
     public HistoryModel lastAdded;
-    public void setData(User user){
+    public void setData(UserModel user){
         connectedUser = user;
         initLastAdded();
         initUserInfo();
     }
     public void initLastAdded(){
-        IMCResponse<HistoryModel> res = HistoryService.getAll(connectedUser, true, 1);
+        IMCResponse<HistoryModel> res = HistoryService.getAll(connectedUser.toEntity(), true, 1);
         try{
 
             lastAdded = res.values.get(0);

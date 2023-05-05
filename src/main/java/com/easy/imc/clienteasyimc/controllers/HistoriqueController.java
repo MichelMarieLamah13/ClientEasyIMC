@@ -7,6 +7,7 @@ import com.easy.imc.clienteasyimc.entities.User;
 import com.easy.imc.clienteasyimc.models.CategoryModel;
 import com.easy.imc.clienteasyimc.models.HistoryModel;
 import com.easy.imc.clienteasyimc.models.UnitePoidsModel;
+import com.easy.imc.clienteasyimc.models.UserModel;
 import com.easy.imc.clienteasyimc.services.CategoryService;
 import com.easy.imc.clienteasyimc.services.HistoryService;
 import com.easy.imc.clienteasyimc.services.UnitePoidsService;
@@ -67,8 +68,8 @@ public class HistoriqueController implements Initializable {
         return isDetailsBtnClicked.getReadOnlyProperty();
     }
 
-    User connectedUser = null;
-    public void setConnectedUser(User user){
+    UserModel connectedUser = null;
+    public void setConnectedUser(UserModel user){
         connectedUser = user;
         initHistoriesTab();
         initHHChoiceBox();
@@ -76,7 +77,7 @@ public class HistoriqueController implements Initializable {
         initCategoryChoiceBox();
     }
     public void initHistoriesTab(){
-        IMCResponse<HistoryModel> res = HistoryService.getAll(connectedUser, false, 0);
+        IMCResponse<HistoryModel> res = HistoryService.getAll(connectedUser.toEntity(), false, 0);
         history_vbox.getChildren().clear();
         addValuesToTab(res.values);
 

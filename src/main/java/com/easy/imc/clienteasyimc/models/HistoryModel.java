@@ -14,6 +14,16 @@ public class HistoryModel {
     public String heure;
     public CategoryModel category;
 
+    public boolean save;
+
+    public boolean isSave() {
+        return save;
+    }
+
+    public void setSave(boolean save) {
+        this.save = save;
+    }
+
     public int getId() {
         return id;
     }

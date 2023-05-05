@@ -3,6 +3,7 @@ package com.easy.imc.clienteasyimc.controllers;
 import com.easy.imc.clienteasyimc.Main;
 import com.easy.imc.clienteasyimc.entities.User;
 import com.easy.imc.clienteasyimc.models.CategoryModel;
+import com.easy.imc.clienteasyimc.models.HistoryModel;
 import com.easy.imc.clienteasyimc.models.OkDialogType;
 import com.easy.imc.clienteasyimc.models.UserModel;
 import javafx.event.ActionEvent;
@@ -92,7 +93,7 @@ public class MainController implements Initializable {
     SignInController signInController;
     SignUpController signUpController;
 
-    User connectedUser = null;
+    UserModel connectedUser = null;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -458,7 +459,7 @@ public class MainController implements Initializable {
 
     public void setConnectedUser(UserModel model){
         if(model!=null){
-            connectedUser = model.toEntity();
+            connectedUser = model;
             username_txtfd.setText(model.login);
             logout_pane.setVisible(true);
             login_pane.setVisible(false);
@@ -485,7 +486,22 @@ public class MainController implements Initializable {
             });
             signUpController.isSignUpBtnClickedProperty().addListener((obs, oldResult, newResult)->{
                 if (newResult.status == HttpURLConnection.HTTP_OK){
-                    onLoginBtnClicked();
+                    if(noDialogShowing()){
+                        initOkDialog();
+                    }
+                    if(!okDialogStage.isShowing()){
+                        String title = "Création de compte réussi";
+                        String message = "Votre compte a été créé avec succès";
+                        okDialogController.setData(OkDialogType.SUCCESS, title, message);
+                        okDialogController.resultProperty().addListener((diaObs, diaOldResult, diaNewResult)->{
+                            if(diaNewResult){
+                                onLoginBtnClicked();
+                            }
+                            clearDialog();
+                        });
+                        okDialogStage.show();
+                    }
+
                 }
             });
             center_anchorPane.getChildren().add(anchorPane);

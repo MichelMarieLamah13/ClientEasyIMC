@@ -7,6 +7,7 @@ public class IMC {
     public UnitePoids unitePoids;
     public UniteTaille uniteTaille;
     public User user;
+    public boolean forMe = false;
 
     public IMC(double taille, double poids) {
         this.taille = taille;
@@ -25,6 +26,7 @@ public class IMC {
                 ", \"unitePoids\":" + unitePoids +
                 ", \"uniteTaille\":" + uniteTaille +
                 ", \"user\":" + user +
+                ", \"forMe\":" + forMe +
                 '}';
     }
 }

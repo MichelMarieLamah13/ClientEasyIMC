@@ -8,6 +8,10 @@ public class User {
 
     public int role;
 
+    public int age;
+
+    public int idAgeCategorie;
+
     @Override
     public String toString() {
         return "{" +
@@ -16,6 +20,8 @@ public class User {
                 ", \"password\":\"" + password + '"' +
                 ", \"avatar\":\"" + avatar + '"' +
                 ", \"role\":" + role +
+                ", \"age\":" + age +
+                ", \"idAgeCategorie\":" + idAgeCategorie +
                 "}";
     }
 
@@ -27,12 +33,37 @@ public class User {
         this.password = password;
     }
 
+    public User(String login, String password, int age) {
+        this.login = login;
+        this.password = password;
+        this.age = age;
+    }
+
     public User(int id, String login, String password, String avatar, int role) {
         this.id = id;
         this.login = login;
         this.password = password;
         this.avatar = avatar;
         this.role = role;
+    }
+
+    public User(int id, String login, String password, String avatar, int role, int age, int idAgeCategorie) {
+        this.id = id;
+        this.login = login;
+        this.password = password;
+        this.avatar = avatar;
+        this.role = role;
+        this.age = age;
+        this.idAgeCategorie = idAgeCategorie;
+    }
+
+    public User(int id, String login, String password, String avatar, int role, int age) {
+        this.id = id;
+        this.login = login;
+        this.password = password;
+        this.avatar = avatar;
+        this.role = role;
+        this.age = age;
     }
 
     public int getId() {
@@ -75,5 +106,21 @@ public class User {
 
     public void setRole(int role) {
         this.role = role;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getIdAgeCategorie() {
+        return idAgeCategorie;
+    }
+
+    public void setIdAgeCategorie(int idAgeCategorie) {
+        this.idAgeCategorie = idAgeCategorie;
     }
 }

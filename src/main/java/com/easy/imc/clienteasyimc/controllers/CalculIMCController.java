@@ -4,10 +4,7 @@ import com.easy.imc.clienteasyimc.Main;
 import com.easy.imc.clienteasyimc.entities.IMC;
 import com.easy.imc.clienteasyimc.entities.IMCResponse;
 import com.easy.imc.clienteasyimc.entities.User;
-import com.easy.imc.clienteasyimc.models.HistoryModel;
-import com.easy.imc.clienteasyimc.models.OkDialogType;
-import com.easy.imc.clienteasyimc.models.UnitePoidsModel;
-import com.easy.imc.clienteasyimc.models.UniteTailleModel;
+import com.easy.imc.clienteasyimc.models.*;
 import com.easy.imc.clienteasyimc.services.CalculIMCService;
 import com.easy.imc.clienteasyimc.services.HistoryService;
 import com.easy.imc.clienteasyimc.services.UnitePoidsService;
@@ -16,14 +13,13 @@ import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -77,24 +73,30 @@ public class CalculIMCController implements Initializable {
     @FXML
     private VBox recentlyAdded_vbox;
 
+    @FXML
+    private Pane forMe_pane;
+
     private final ReadOnlyObjectWrapper<HistoryModel> isDetailsBtnClicked = new ReadOnlyObjectWrapper<>();
 
-    User connectedUser = null;
+    UserModel connectedUser = null;
+
+    @FXML
+    private Button details_btn;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initUnitePoids();
         initUniteTaille();
-        initValues();
     }
 
     public ReadOnlyObjectProperty<HistoryModel> isDetailsBtnClickedProperty() {
         return isDetailsBtnClicked.getReadOnlyProperty();
     }
 
-    public void setConnectedUser(User user){
+    public void setConnectedUser(UserModel user){
         connectedUser = user;
         toggleRCPane();
         initRecentlyAdded();
+        initValues();
     }
 
     public boolean isUserConnected(){
@@ -104,37 +106,50 @@ public class CalculIMCController implements Initializable {
         recemment_calcule_pane.setVisible(isUserConnected());
     }
 
+    @FXML
+    private CheckBox for_me_cb;
+
     public void onClickCalculerIMC(){
 
         try{
             IMC imc = getValues();
             if(isNotEmpty(imc)){
-                IMCResponse<HistoryModel> response = CalculIMCService.calculIMC(imc);
-                if(response.status == HttpURLConnection.HTTP_OK){
-                    if(noDialogShowing()){
-                        initOkDialog();
-                    }
-                    if(!okDialogStage.isShowing()){
-                        String title = "Calcul réussi";
-                        String message = "Calcul effectué avec succès";
-                        okDialogController.setData(OkDialogType.SUCCESS, title, message);
-                        okDialogController.resultProperty().addListener((diaObs, diaOldResult, diaNewResult)->{
-                            if(diaNewResult){
-                                HistoryModel model = response.values.get(0);
-                                setValues(model);
-                            }
-                            clearDialog();
-                        });
-                        okDialogStage.show();
-                    }
+                if(!isUserConnected() || isTailleCorrect(imc)){
+                    IMCResponse<HistoryModel> response = CalculIMCService.calculIMC(imc);
+                    if(response.status == HttpURLConnection.HTTP_OK){
+                        if(noDialogShowing()){
+                            initOkDialog();
+                        }
+                        if(!okDialogStage.isShowing()){
+                            String title = "Calcul réussi";
+                            String message = "Calcul effectué avec succès";
+                            okDialogController.setData(OkDialogType.SUCCESS, title, message);
+                            okDialogController.resultProperty().addListener((diaObs, diaOldResult, diaNewResult)->{
+                                if(diaNewResult){
+                                    HistoryModel model = response.values.get(0);
+                                    setValues(model);
+                                }
+                                clearDialog();
+                            });
+                            okDialogStage.show();
+                        }
 
+                    }else{
+                        showWarningMessage(response.message);
+                    }
                 }else{
-                    showWarningMessage(response.message);
+                    double minTaille = lastAdded.taille + connectedUser.ageCategorie.minVar;
+                    double maxTaille = lastAdded.taille + connectedUser.ageCategorie.maxVar;
+                    showWarningMessage(connectedUser.ageCategorie.name+" : ["+minTaille+" , "+maxTaille+"]");
                 }
+
             }else{
                showWarningMessage("Veuillez saisir les valeurs");
             }
         }catch (Exception e){
+            Logger.getAnonymousLogger().log(
+                    Level.SEVERE,
+                    LocalDateTime.now() + ":" +e.getMessage());
             showErrorServer(e.getMessage());
         }
 
@@ -181,6 +196,16 @@ public class CalculIMCController implements Initializable {
         initRecentlyAdded();
     }
 
+    @FXML
+    private Hyperlink for_me_hplk;
+
+    @FXML
+    void onForMeClicked(ActionEvent event) {
+        if(event.getSource() == for_me_hplk){
+            for_me_cb.setSelected(!for_me_cb.isSelected());
+        }
+    }
+
     public void onDetailsBtnClicked(){
         if(model!=null){
             isDetailsBtnClicked.set(model);
@@ -191,9 +216,13 @@ public class CalculIMCController implements Initializable {
         IMC imc = new IMC();
         imc.poids = Double.parseDouble(poids_txtfd.getText());
         imc.taille = Double.parseDouble(taille_txtfd.getText());
-        imc.user = connectedUser;
+        imc.user = null;
+        if(isUserConnected()){
+            imc.user = connectedUser.toEntity();
+        }
         imc.unitePoids = unite_poids_cb.getValue().toEntity();
         imc.uniteTaille = unite_taille_cb.getValue().toEntity();
+        imc.forMe = for_me_cb.isSelected();
         return imc;
     }
     public void initUnitePoids(){
@@ -207,18 +236,21 @@ public class CalculIMCController implements Initializable {
 
     public void initUniteTaille(){
         IMCResponse<UniteTailleModel> res = UniteTailleService.getAll();
-
         ObservableList<UniteTailleModel> listItems = FXCollections.observableArrayList();
         listItems.addAll(res.values);
         unite_taille_cb.setItems(listItems);
         unite_taille_cb.setValue(listItems.get(0));
     }
 
+    HistoryModel lastAdded;
     public void initRecentlyAdded(){
         if(isUserConnected()){
-            IMCResponse<HistoryModel> res = HistoryService.getAll(connectedUser, true, 5);
+            IMCResponse<HistoryModel> res = HistoryService.getAll(connectedUser.toEntity(), true, 5);
             recentlyAdded_vbox.getChildren().clear();
             try{
+                if(!res.values.isEmpty()){
+                    lastAdded = res.values.get(0);
+                }
                 for (HistoryModel model:res.values) {
                     FXMLLoader loader = new FXMLLoader();
                     loader.setLocation(Main.class.getResource("history-table-row-view.fxml"));
@@ -238,11 +270,31 @@ public class CalculIMCController implements Initializable {
 
     }
 
+    public boolean isTailleCorrect(IMC imc){
+        if(!for_me_cb.isSelected() || lastAdded==null || !isUserConnected()){
+            return true;
+        }
+
+        double minVar = lastAdded.taille + connectedUser.ageCategorie.minVar;
+        double maxVar = lastAdded.taille + connectedUser.ageCategorie.minVar;
+        return imc.taille == lastAdded.taille || (minVar<=imc.taille && imc.taille<=maxVar);
+    }
+
     public void initValues(){
         unite_imc_txtfd.setText("Kg/m^2");
         imc_txtfd.setText(Double.toString(0));
         poids_txtfd.setText(Double.toString(0));
         taille_txtfd.setText(Double.toString(0));
+        categorie_title_txtfd.setText("Catégorie");
+
+        boolean isConnected = isUserConnected();
+        System.out.println(isConnected);
+        forMe_pane.setVisible(isConnected);
+        details_btn.setVisible(isConnected);
+
+        categorie_iv.setImage(new Image(String.valueOf(Main.class.getResource("images/categories/categorie01.png"))));
+        for_me_cb.setSelected(false);
+
     }
     OkDialogController okDialogController = null;
     Stage okDialogStage = null;
@@ -295,5 +347,11 @@ public class CalculIMCController implements Initializable {
     public void clearDialog(){
         okDialogStage = null;
         okDialogController = null;
+    }
+
+    @FXML
+    void onClearBtnClicked(ActionEvent event) {
+        initValues();
+
     }
 }

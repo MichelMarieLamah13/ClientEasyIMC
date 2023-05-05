@@ -306,7 +306,7 @@
     -fx-font-weight: bold;
 }
 
-
+/*
 .chart-plot-background {
     -fx-background-color: #e2ecfe;
 }
@@ -321,6 +321,7 @@
     -fx-stroke: transparent;
     -fx-stroke-width: 0;
 }
+*/
 
 
 /* ===================== DIALOG ===================== */
