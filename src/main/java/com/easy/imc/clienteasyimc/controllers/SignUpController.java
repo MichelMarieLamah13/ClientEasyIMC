@@ -76,12 +76,26 @@ public class SignUpController implements Initializable {
     public void onSignUpClicked(){
         try{
             User user = getValues();
-            IMCResponse<UserModel> response = UserService.create(user);
-            isSignUpBtnClicked.set(response);
+            if(isUserValid(user)){
+                IMCResponse<UserModel> response = UserService.create(user);
+                isSignUpBtnClicked.set(response);
+            }else{
+                showWarningMessage("Valeurs valides!");
+            }
+
         }catch (Exception e){
             showErrorServer(e.getMessage());
         }
 
+    }
+
+    public boolean isUserValid(User user){
+        if(user != null){
+            if(user.age > 0 && !user.login.isEmpty() && !user.password.isEmpty()){
+                return true;
+            }
+        }
+        return false;
     }
 
     public void showErrorServer(String message){

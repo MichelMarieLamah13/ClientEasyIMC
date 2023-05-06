@@ -4,10 +4,7 @@ import com.easy.imc.clienteasyimc.Main;
 import com.easy.imc.clienteasyimc.entities.History;
 import com.easy.imc.clienteasyimc.entities.IMCResponse;
 import com.easy.imc.clienteasyimc.entities.User;
-import com.easy.imc.clienteasyimc.models.CategoryModel;
-import com.easy.imc.clienteasyimc.models.HistoryModel;
-import com.easy.imc.clienteasyimc.models.UnitePoidsModel;
-import com.easy.imc.clienteasyimc.models.UserModel;
+import com.easy.imc.clienteasyimc.models.*;
 import com.easy.imc.clienteasyimc.services.CategoryService;
 import com.easy.imc.clienteasyimc.services.HistoryService;
 import com.easy.imc.clienteasyimc.services.UnitePoidsService;
@@ -18,14 +15,21 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -137,6 +141,7 @@ public class HistoriqueController implements Initializable {
                 history.taille = Double.parseDouble(x);
                 history.imc = Double.parseDouble(x);
             }catch (Exception e){
+                showErrorServer(e.getMessage());
                 Logger.getAnonymousLogger().log(
                         Level.INFO,
                         LocalDateTime.now() + ":" +e.getMessage());
@@ -171,6 +176,8 @@ public class HistoriqueController implements Initializable {
     }
 
     @FXML
+    private Pane top_pane;
+    @FXML
     public void onClearBtnClicked(){
         History history = new History();
         history.idUser = connectedUser.id;
@@ -181,5 +188,68 @@ public class HistoriqueController implements Initializable {
         categorie_cb.setValue(null);
         IMCResponse<HistoryModel> response = HistoryService.getHistoryByMultiCriteria(history);
         addValuesToTab(response.values);
+    }
+
+    OkDialogController okDialogController = null;
+    Stage okDialogStage = null;
+
+    double x, y = 0;
+    public void initOkDialog(){
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("ok-dialog.fxml"));
+            Parent parent = loader.load();
+            okDialogController = loader.getController();
+
+            okDialogStage = new Stage();
+            Scene scene = new Scene(parent);
+            okDialogStage.setScene(scene);
+            okDialogStage.setResizable(false);
+            okDialogStage.setAlwaysOnTop(true);
+
+            double topX = top_pane.getScene().getX();
+            double topY = top_pane.getScene().getY();
+            okDialogStage.setX(topX + 500);
+            okDialogStage.setY(topY + 200);
+            okDialogStage.initModality(Modality.WINDOW_MODAL);
+            okDialogStage.initStyle(StageStyle.UNDECORATED);
+
+            scene.setOnMousePressed(evt->{
+                x = evt.getSceneX();
+                y = evt.getSceneY();
+            });
+
+            scene.setOnMouseDragged(evt->{
+                okDialogStage.setX(evt.getScreenX() - x);
+                okDialogStage.setY(evt.getScreenY() - y);
+            });
+
+
+        }catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void showErrorServer(String message){
+        if(noDialogShowing()){
+            initOkDialog();
+        }
+        if(!okDialogStage.isShowing()){
+            String title = "Erreur serveur";
+            okDialogController.setData(OkDialogType.DANGER, title, message);
+            okDialogController.resultProperty().addListener((diaObs, diaOldResult, diaNewResult)->{
+                clearDialog();
+            });
+            okDialogStage.show();
+        }
+    }
+
+    public void clearDialog(){
+        okDialogStage = null;
+        okDialogController = null;
+    }
+
+    public boolean noDialogShowing(){
+        return okDialogStage == null && okDialogController == null;
     }
 }

@@ -32,6 +32,8 @@ import javafx.stage.StageStyle;
 import javafx.util.StringConverter;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -138,8 +140,8 @@ public class CalculIMCController implements Initializable {
                         showWarningMessage(response.message);
                     }
                 }else{
-                    double minTaille = lastAdded.taille + connectedUser.ageCategorie.minVar;
-                    double maxTaille = lastAdded.taille + connectedUser.ageCategorie.maxVar;
+                    double minTaille = getFormattedDouble(lastAdded.taille + connectedUser.ageCategorie.minVar);
+                    double maxTaille = getFormattedDouble(lastAdded.taille + connectedUser.ageCategorie.maxVar);
                     showWarningMessage(connectedUser.ageCategorie.name+" : ["+minTaille+" , "+maxTaille+"]");
                 }
 
@@ -153,6 +155,11 @@ public class CalculIMCController implements Initializable {
             showErrorServer(e.getMessage());
         }
 
+    }
+
+    double getFormattedDouble(double value){
+        BigDecimal bd=new BigDecimal(value).setScale(2, RoundingMode.HALF_DOWN);
+        return bd.doubleValue();
     }
 
     public boolean isNotEmpty(IMC imc){
@@ -275,8 +282,8 @@ public class CalculIMCController implements Initializable {
             return true;
         }
 
-        double minVar = lastAdded.taille + connectedUser.ageCategorie.minVar;
-        double maxVar = lastAdded.taille + connectedUser.ageCategorie.minVar;
+        double minVar = getFormattedDouble(lastAdded.taille + connectedUser.ageCategorie.minVar);
+        double maxVar = getFormattedDouble(lastAdded.taille + connectedUser.ageCategorie.minVar);
         return imc.taille == lastAdded.taille || (minVar<=imc.taille && imc.taille<=maxVar);
     }
 
